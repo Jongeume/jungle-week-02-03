@@ -1,0 +1,12 @@
+입력: "A man, a plan, a canal: Panama"
+회문 여부: True
+
+입력: "race a car"
+회문 여부: False
+
+입력: "Was it a car or a cat I saw?"
+회문 여부: True
+
+입력: "Madam"
+회문 여부: True
+
