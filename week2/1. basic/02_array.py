@@ -53,6 +53,16 @@ def rotate_matrix_90(matrix):
     #         row.append(0)
     #     newArr.append(row)
 
+    #  newArr = [[0]*n] * n
+    #  얕은 복사이기에 [0, 0, 0] 인 하나의 리스트가 3개 들어감
+    #  문제는 이 리스트가 같은 하나의 리스트여서
+    #  리스트 안의 첫번째 값을 변경하면
+    #  newArr[0][0] = 1
+    #  [1, 0, 0]
+    #  [1, 0, 0]
+    #  [1, 0, 0]
+    #  모든 행의 첫번째 값이 변경이 된다.
+
     newArr = [[0] * n for _ in range(n)]
     # print(newArr)
     # TODO: 원본 배열의 각 요소를 회전된 위치에 배치하세요
