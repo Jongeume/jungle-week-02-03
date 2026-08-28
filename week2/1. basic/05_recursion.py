@@ -26,7 +26,7 @@ def factorial(n):
     재귀를 사용한 팩토리얼 계산
 
     Args:
-        n: 양의 정수
+        n: 양의 정수d
 
     Returns:
         n의 팩토리얼 값
