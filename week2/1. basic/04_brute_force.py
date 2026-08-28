@@ -26,27 +26,34 @@
 - i < j 조건을 유지하여 중복을 방지하세요
 """
 
+
 def find_two_sum_pairs(nums, target):
     """
     배열에서 합이 target이 되는 모든 인덱스 쌍 찾기
-    
+
     Args:
         nums: 정수 배열
         target: 목표 합
-    
+
     Returns:
         list: (i, j) 인덱스 쌍의 리스트
     """
     pairs = []
     n = len(nums)
-    
+
     # TODO: 이중 반복문으로 모든 쌍을 확인하세요
-    ## 외부 반복문: i는 0부터 n-1까지
-    ## 내부 반복문: j는 i+1부터 n까지 (중복 방지)
-    ## nums[i] + nums[j]가 target과 같으면 (i, j)를 결과에 추가
-    pass  
-    
+    # 외부 반복문: i는 0부터 n-1까지
+    # 내부 반복문: j는 i+1부터 n까지 (중복 방지)
+    # nums[i] + nums[j]가 target과 같으면 (i, j)를 결과에 추가
+
+    for i in range(0, n-1):
+        for j in range(i+1, n):
+            if nums[i] + nums[j] == target:
+                pairs.append((i, j))
+    # print(pairs)
+
     return pairs
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -58,7 +65,7 @@ if __name__ == "__main__":
     print(f"목표 합: {target1}")
     print(f"결과 쌍: {result1}")
     print()
-    
+
     # 테스트 케이스 2
     nums2 = [1, 3, 4, 2, 5, 6]
     target2 = 7
@@ -67,7 +74,7 @@ if __name__ == "__main__":
     print(f"목표 합: {target2}")
     print(f"결과 쌍: {result2}")
     print()
-    
+
     # 테스트 케이스 3
     nums3 = [1, 1, 1, 1]
     target3 = 2
@@ -75,5 +82,3 @@ if __name__ == "__main__":
     print(f"배열: {nums3}")
     print(f"목표 합: {target3}")
     print(f"결과 쌍: {result3}")
-
-
