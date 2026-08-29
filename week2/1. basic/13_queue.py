@@ -26,27 +26,32 @@
 
 from collections import deque
 
+
 def process_print_queue(jobs):
     """
     프린터 작업을 순서대로 처리
-    
+
     Args:
         jobs: 작업 리스트
-    
+
     Returns:
         처리된 작업 리스트
     """
     # TODO: deque로 큐 생성
     queue = deque(jobs)
-    
+
     processed = []
-    
+
     # TODO: 큐가 비어있지 않은 동안 반복
-    ## 큐에서 작업 꺼내기
-    ## 작업 처리 (출력 및 리스트에 추가)
-    pass
-    
+    # 큐에서 작업 꺼내기
+    # 작업 처리 (출력 및 리스트에 추가)
+    while len(queue) > 0:
+        i = queue.popleft()
+        processed.append(i)
+        print("처리:", i)
+
     return processed
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -56,11 +61,9 @@ if __name__ == "__main__":
     result1 = process_print_queue(jobs1)
     print(f"처리 완료: {result1}")
     print()
-    
+
     # 테스트 케이스 2
     jobs2 = ["이메일", "보고서", "사진", "계약서"]
     print("=== 프린터 작업 처리 ===")
     result2 = process_print_queue(jobs2)
     print(f"처리 완료: {result2}")
-
-
