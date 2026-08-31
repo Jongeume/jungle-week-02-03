@@ -22,10 +22,11 @@
 - 정렬된 두 부분을 병합
 """
 
+
 def merge(arr, left, mid, right):
     """
     두 개의 정렬된 부분 배열을 병합하는 함수
-    
+
     Args:
         arr: 원본 배열
         left: 왼쪽 부분의 시작 인덱스
@@ -33,49 +34,69 @@ def merge(arr, left, mid, right):
         right: 오른쪽 부분의 끝 인덱스
     """
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
-    pass
-    
+    left_arr = arr[left:mid+1]
+    right_arr = arr[mid+1:right+1]
+    merged_arr = []
+
     # TODO: 두 배열을 병합
-    pass
-    
-    
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
-    pass
-    
+    i = 0
+    j = 0
+    while i < len(left_arr) and j < len(right_arr):
+        if left_arr[i] <= right_arr[j]:
+            merged_arr.append(left_arr[i])
+            i += 1
+        else:
+            merged_arr.append(right_arr[j])
+            j += 1
     # TODO: 남은 원소들을 복사
     # left_arr에 남은 원소가 있으면 복사
+    if len(left_arr) > i:
+        merged_arr += left_arr[i:]
     # right_arr에 남은 원소가 있으면 복사
-    pass
+    if j < len(right_arr):
+        merged_arr += right_arr[j:]
+
+    arr[left:right+1] = merged_arr
+
 
 def merge_sort_helper(arr, left, right):
     """
     머지 정렬 재귀 함수
-    
+
     Args:
         arr: 배열
         left: 시작 인덱스
         right: 끝 인덱스
     """
     # TODO: base case - left가 right보다 작을 때만 정렬
-    ## 중간 지점 계산
-    ## 왼쪽 절반 재귀 정렬
-    ## 오른쪽 절반 재귀 정렬
-    ## 정렬된 두 절반을 병합
+    if left < right:
+        # 중간 지점 계산
+        mid = (left+right)//2
+    # 왼쪽 절반 재귀 정렬
+        merge_sort_helper(arr, left, mid)
+    # 오른쪽 절반 재귀 정렬
+        merge_sort_helper(arr, mid+1, right)
+    # 정렬된 두 절반을 병합
+        merge(arr, left, mid, right)
+
     pass
+
 
 def merge_sort(arr):
     """
     머지 정렬 메인 함수
-    
+
     Args:
         arr: 정렬할 배열
-    
+
     Returns:
         정렬된 배열
     """
     if len(arr) > 1:
         merge_sort_helper(arr, 0, len(arr) - 1)
     return arr
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -86,7 +107,7 @@ if __name__ == "__main__":
     result1 = merge_sort(arr1.copy())
     print(f"정렬 후: {result1}")
     print()
-    
+
     # 테스트 케이스 2
     arr2 = [12, 11, 13, 5, 6, 7]
     print("=== 테스트 케이스 2 ===")
@@ -94,7 +115,7 @@ if __name__ == "__main__":
     result2 = merge_sort(arr2.copy())
     print(f"정렬 후: {result2}")
     print()
-    
+
     # 테스트 케이스 3: 역순
     arr3 = [9, 8, 7, 6, 5, 4, 3, 2, 1]
     print("=== 테스트 케이스 3: 역순 ===")
@@ -102,12 +123,10 @@ if __name__ == "__main__":
     result3 = merge_sort(arr3.copy())
     print(f"정렬 후: {result3}")
     print()
-    
+
     # 테스트 케이스 4: 중복 원소
     arr4 = [5, 2, 8, 2, 9, 1, 5, 5]
     print("=== 테스트 케이스 4: 중복 원소 ===")
     print(f"정렬 전: {arr4}")
     result4 = merge_sort(arr4.copy())
     print(f"정렬 후: {result4}")
-
-
