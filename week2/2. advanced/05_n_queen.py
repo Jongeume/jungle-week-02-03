@@ -44,6 +44,7 @@ N = 8 -> 92      (전통적인 "8-Queens 문제" 의 답)
 - 1 <= N <= 8
 
 ▣ 힌트 (백트래킹 아이디어)
+cols: 열  row:행
 - 각 행에는 정확히 하나의 퀸만 놓을 수 있으므로, 1차원 배열 cols 를 사용해
     cols[row] = 그 행에 놓은 퀸의 열 번호
   로 표현하면 충분합니다.
@@ -52,6 +53,10 @@ N = 8 -> 92      (전통적인 "8-Queens 문제" 의 답)
     같은 열 충돌  :  cols[i] == c
     대각선 충돌    :  abs(cols[i] - c) == row - i
 - row 가 N 에 도달했다는 것은 모든 행을 무사히 채웠다는 의미이므로 1가지 경우.
+
+##insight :
+# 행,열 둘중에 한방향을 잡고 풀자.
+# 재귀호출은 행 깊이탐색용, 백트래킹은 이전 행의 열로
 """
 
 
@@ -62,12 +67,26 @@ def n_queens(n: int) -> int:
     """
     # TODO: 백트래킹으로 가능한 배치의 수를 반환하세요.
     # 권장 구조:
-    #   cols = [0] * n
-    #   count = 0
-    #   def place(row):
-    #       ...
-    #   place(0)
-    #   return count
+    cols = [0] * n
+    count = 0
+
+    def place(row):
+        nonlocal count
+        if row == n:
+            count += 1
+            return
+        for c in range(n):
+            is_safe = True
+            for i in range(row):
+                if cols[i] == c or abs(cols[i] - c) == row-i:
+                    is_safe = False
+                    break
+            if is_safe:
+                cols[row] = c
+                place(row+1)
+
+    place(0)
+    return count
     pass
 
 
