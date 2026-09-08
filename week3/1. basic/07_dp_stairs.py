@@ -35,27 +35,30 @@ DP 문제 풀이 순서:
 5. 구현 및 검증
 """
 
+
 def climb_stairs(n):
     """
     계단 오르기 (상향식 DP)
-    
+
     Args:
         n: 계단의 수
-    
+
     Returns:
         n번째 계단까지 오르는 방법의 수
     """
     # TODO: 특별한 경우 처리
-    pass
-    
-    
+    if n <= 2:
+        return n
     # TODO: dp 배열 생성 및 초기화
-    pass
-    
+    dp = [0] * (n+1)  # 0,1,2,3,....,n == n+1개
+    dp[1], dp[2] = 1, 2
+
     # TODO: 작은 문제부터 차례로 계산
-    pass
-    
+    for i in range(3, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+
     return dp[n]
+
 
 # 테스트 케이스
 if __name__ == "__main__":
@@ -65,13 +68,13 @@ if __name__ == "__main__":
         result = climb_stairs(i)
         print(f"{i}번 계단: {result}가지")
     print()
-    
+
     # 테스트 케이스 2: 큰 수
     n = 20
     result = climb_stairs(n)
     print(f"{n}번 계단: {result}가지")
     print()
-    
+
     # 계단별 경로 예시
     print("=== 4번 계단의 경로 ===")
     print("1. 1+1+1+1")
@@ -79,5 +82,3 @@ if __name__ == "__main__":
     print("3. 1+2+1")
     print("4. 2+1+1")
     print("5. 2+2")
-
-
