@@ -70,7 +70,7 @@ def topological_sort(vertices, edges):
             if indgree[next_vertices] == 0 and next_vertices not in que:
                 que.append(next_vertices)
 
-    # 사이클 감지
+    # 사이클 감지 s
     return result if vertices == len(result) else print("사이클")
 
 
